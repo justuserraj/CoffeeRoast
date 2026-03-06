@@ -1,9 +1,10 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart, ShoppingCart, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ProductQuickView from './ProductQuickView';
 
 const products = [
   {
@@ -37,6 +38,8 @@ const products = [
 ];
 
 const ProductGrid = () => {
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+
   return (
     <section id="shop" className="py-20 bg-[#EAD3C6]">
       <div className="container-custom">
@@ -61,12 +64,21 @@ const ProductGrid = () => {
                 <Heart size={20} />
               </button>
               
-              <div className="aspect-square overflow-hidden rounded-[16px] mb-6">
+              <div className="aspect-square overflow-hidden rounded-[16px] mb-6 relative">
                 <img 
                   src={product.image} 
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <Button 
+                    onClick={() => setSelectedProduct(product)}
+                    className="bg-white text-[#2C1E1A] hover:bg-[#F2DFD6] rounded-[24px] px-6 flex items-center gap-2"
+                  >
+                    <Eye size={18} />
+                    Quick View
+                  </Button>
+                </div>
               </div>
 
               <div className="space-y-2">
@@ -85,6 +97,12 @@ const ProductGrid = () => {
           ))}
         </div>
       </div>
+
+      <ProductQuickView 
+        product={selectedProduct} 
+        isOpen={!!selectedProduct} 
+        onClose={() => setSelectedProduct(null)} 
+      />
     </section>
   );
 };
