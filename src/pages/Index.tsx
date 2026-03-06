@@ -8,7 +8,9 @@ import Process from '@/components/Process';
 import ProductGrid from '@/components/ProductGrid';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
+import FAQ from '@/components/FAQ';
 import BlogGrid from '@/components/BlogGrid';
+import SocialProof from '@/components/SocialProof';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 import { MadeWithDyad } from "@/components/made-with-dyad";
@@ -24,7 +26,9 @@ const Index = () => {
         <ProductGrid />
         <Testimonials />
         <Pricing />
+        <FAQ />
         <BlogGrid />
+        <SocialProof />
         <CTA />
       </main>
       <Footer />
