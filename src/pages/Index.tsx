@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import Categories from '@/components/Categories';
 import Process from '@/components/Process';
 import ProductGrid from '@/components/ProductGrid';
+import OriginStories from '@/components/OriginStories';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
@@ -24,6 +25,7 @@ const Index = () => {
         <Categories />
         <Process />
         <ProductGrid />
+        <OriginStories />
         <Testimonials />
         <Pricing />
         <FAQ />

@@ -4,10 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import CartDrawer from './CartDrawer';
+import SearchOverlay from './SearchOverlay';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +24,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Shop', href: '#shop' },
     { name: 'Categories', href: '#categories' },
-    { name: 'Our Story', href: '#blog' },
+    { name: 'Impact', href: '#stories' },
     { name: 'Blog', href: '#blog' },
   ];
 
@@ -48,10 +52,16 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <button className="p-2 hover:bg-[#F2DFD6] rounded-full transition-colors">
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              className="p-2 hover:bg-[#F2DFD6] rounded-full transition-colors"
+            >
               <Search size={20} className="text-[#2C1E1A]" />
             </button>
-            <button className="p-2 hover:bg-[#F2DFD6] rounded-full transition-colors relative">
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="p-2 hover:bg-[#F2DFD6] rounded-full transition-colors relative"
+            >
               <ShoppingCart size={20} className="text-[#2C1E1A]" />
               <span className="absolute top-0 right-0 bg-[#8C5A3C] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
             </button>
@@ -67,6 +77,9 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
