@@ -4,6 +4,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Categories from '@/components/Categories';
+import OurStorySection from '@/components/OurStorySection';
 import Process from '@/components/Process';
 import ProductGrid from '@/components/ProductGrid';
 import OriginStories from '@/components/OriginStories';
@@ -23,11 +24,14 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <Categories />
+        <OurStorySection />
         <Process />
+        <div id="pricing">
+          <Pricing />
+        </div>
         <ProductGrid />
         <OriginStories />
         <Testimonials />
-        <Pricing />
         <FAQ />
         <BlogGrid />
         <SocialProof />
