@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { showSuccess } from '@/utils/toast';
 
 const posts = [
   {
@@ -30,7 +31,12 @@ const BlogGrid = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-3xl md:text-[32px] font-semibold">BREW JOURNAL</h2>
-          <button className="text-[#8C5A3C] font-medium hover:underline">Read All Posts</button>
+          <button 
+            onClick={() => showSuccess("Redirecting to full blog...")}
+            className="text-[#8C5A3C] font-medium hover:underline"
+          >
+            Read All Posts
+          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -58,7 +64,10 @@ const BlogGrid = () => {
                 <p className="text-[#6B6B6B] text-sm leading-relaxed mb-6">
                   {post.excerpt}
                 </p>
-                <button className="text-sm font-bold text-[#2C1E1A] underline underline-offset-4 hover:text-[#8C5A3C] transition-colors">
+                <button 
+                  onClick={() => showSuccess(`Reading: ${post.title}`)}
+                  className="text-sm font-bold text-[#2C1E1A] underline underline-offset-4 hover:text-[#8C5A3C] transition-colors"
+                >
                   Read More
                 </button>
               </div>

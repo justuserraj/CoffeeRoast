@@ -22,6 +22,10 @@ const categories = [
 ];
 
 const Categories = () => {
+  const scrollToShop = () => {
+    document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="categories" className="py-20 bg-[#E7CFC2]">
       <div className="container-custom">
@@ -29,7 +33,7 @@ const Categories = () => {
           <h2 className="text-3xl md:text-[32px] font-semibold tracking-[0.02em]">
             TOP CATEGORIES
           </h2>
-          <button className="text-[#8C5A3C] font-medium hover:underline">View All</button>
+          <button onClick={scrollToShop} className="text-[#8C5A3C] font-medium hover:underline">View All</button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -40,6 +44,7 @@ const Categories = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
+              onClick={scrollToShop}
               className="group relative aspect-[4/3] overflow-hidden rounded-[22px] cursor-pointer shadow-sm"
             >
               <img 

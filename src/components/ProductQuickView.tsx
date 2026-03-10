@@ -1,9 +1,11 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Star, ShoppingCart, Heart } from 'lucide-react';
+import { X, Star, Heart, Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useCart } from '@/hooks/use-cart';
+import { showSuccess } from '@/utils/toast';
 
 interface ProductQuickViewProps {
   product: any;
@@ -12,7 +14,18 @@ interface ProductQuickViewProps {
 }
 
 const ProductQuickView = ({ product, isOpen, onClose }: ProductQuickViewProps) => {
+  const [quantity, setQuantity] = useState(1);
+  const { addItem } = useCart();
+
   if (!product) return null;
+
+  const handleAddToCart = () => {
+    for (let i = 0; i < quantity; i++) {
+      addItem(product);
+    }
+    showSuccess(`${quantity}x ${product.name} added to cart!`);
+    onClose();
+  };
 
   return (
     <AnimatePresence>
@@ -64,16 +77,22 @@ const ProductQuickView = ({ product, isOpen, onClose }: ProductQuickViewProps) =
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="flex items-center border border-[#E5D6CF] rounded-[24px] px-4 py-2 bg-white">
-                    <button className="px-2 font-bold">-</button>
-                    <span className="px-4 font-medium">1</span>
-                    <button className="px-2 font-bold">+</button>
+                    <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="px-2 font-bold"><Minus size={16} /></button>
+                    <span className="px-4 font-medium">{quantity}</span>
+                    <button onClick={() => setQuantity(q => q + 1)} className="px-2 font-bold"><Plus size={16} /></button>
                   </div>
-                  <Button className="flex-grow bg-[#2C1E1A] hover:bg-[#5B3A29] text-white rounded-[24px] py-6 h-auto font-bold">
+                  <Button 
+                    onClick={handleAddToCart}
+                    className="flex-grow bg-[#2C1E1A] hover:bg-[#5B3A29] text-white rounded-[24px] py-6 h-auto font-bold"
+                  >
                     Add to Cart
                   </Button>
                 </div>
                 
-                <button className="flex items-center gap-2 text-sm font-medium text-[#2C1E1A] hover:text-[#8C5A3C] transition-colors">
+                <button 
+                  onClick={() => showSuccess("Added to wishlist!")}
+                  className="flex items-center gap-2 text-sm font-medium text-[#2C1E1A] hover:text-[#8C5A3C] transition-colors"
+                >
                   <Heart size={18} />
                   Add to Wishlist
                 </button>

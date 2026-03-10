@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { showSuccess } from '@/utils/toast';
 
 const plans = [
   {
@@ -71,6 +72,7 @@ const Pricing = () => {
                 ))}
               </ul>
               <Button 
+                onClick={() => showSuccess(`Subscribing to ${plan.name}...`)}
                 className={`w-full rounded-[24px] py-6 transition-transform hover:scale-105 ${
                   plan.recommended 
                   ? 'bg-white text-[#2C1E1A] hover:bg-[#E5E5E5]' 

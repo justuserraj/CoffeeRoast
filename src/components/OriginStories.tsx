@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, ArrowRight } from 'lucide-react';
+import { showSuccess } from '@/utils/toast';
 
 const stories = [
   {
@@ -66,7 +67,10 @@ const OriginStories = () => {
                 </div>
                 <div className="flex items-center justify-between pt-6 border-t border-[#E5D6CF]">
                   <span className="text-sm font-bold text-[#2C1E1A]">{story.stats}</span>
-                  <button className="flex items-center gap-2 text-sm font-bold text-[#8C5A3C] hover:gap-3 transition-all">
+                  <button 
+                    onClick={() => showSuccess(`Opening story: ${story.title}`)}
+                    className="flex items-center gap-2 text-sm font-bold text-[#8C5A3C] hover:gap-3 transition-all"
+                  >
                     Read Story <ArrowRight size={16} />
                   </button>
                 </div>

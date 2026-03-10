@@ -6,12 +6,16 @@ import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import CartDrawer from './CartDrawer';
 import SearchOverlay from './SearchOverlay';
+import { useCart } from '@/hooks/use-cart';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { items } = useCart();
+
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +67,11 @@ const Navbar = () => {
               className="p-2 hover:bg-[#F2DFD6] rounded-full transition-colors relative"
             >
               <ShoppingCart size={20} className="text-[#2C1E1A]" />
-              <span className="absolute top-0 right-0 bg-[#8C5A3C] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 bg-[#8C5A3C] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+                  {cartCount}
+                </span>
+              )}
             </button>
             <Button className="hidden md:flex bg-[#2C1E1A] hover:bg-[#5B3A29] text-white rounded-[24px] px-6">
               Sign In
@@ -81,7 +89,6 @@ const Navbar = () => {
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { Heart, ShoppingCart, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductQuickView from './ProductQuickView';
+import { useCart } from '@/hooks/use-cart';
+import { showSuccess } from '@/utils/toast';
 
 const products = [
   {
@@ -39,6 +41,16 @@ const products = [
 
 const ProductGrid = () => {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const { addItem } = useCart();
+
+  const handleAddToCart = (product: any) => {
+    addItem(product);
+    showSuccess(`${product.name} added to cart!`);
+  };
+
+  const handleAddToWishlist = (name: string) => {
+    showSuccess(`${name} added to wishlist!`);
+  };
 
   return (
     <section id="shop" className="py-20 bg-[#EAD3C6]">
@@ -60,7 +72,10 @@ const ProductGrid = () => {
               viewport={{ once: true }}
               className="group bg-[#F2DFD6] p-5 rounded-[18px] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative"
             >
-              <button className="absolute top-8 right-8 z-10 bg-white p-2 rounded-[16px] shadow-sm hover:text-red-500 transition-colors">
+              <button 
+                onClick={() => handleAddToWishlist(product.name)}
+                className="absolute top-8 right-8 z-10 bg-white p-2 rounded-[16px] shadow-sm hover:text-red-500 transition-colors"
+              >
                 <Heart size={20} />
               </button>
               
@@ -88,7 +103,10 @@ const ProductGrid = () => {
                 <h3 className="text-xl font-semibold text-[#2C1E1A]">{product.name}</h3>
                 <div className="flex items-center justify-between pt-4">
                   <span className="text-lg font-bold text-[#2C1E1A]">{product.price}</span>
-                  <Button className="bg-[#2C1E1A] hover:bg-[#5B3A29] text-white rounded-[24px] h-10 w-10 p-0 transition-transform hover:scale-110">
+                  <Button 
+                    onClick={() => handleAddToCart(product)}
+                    className="bg-[#2C1E1A] hover:bg-[#5B3A29] text-white rounded-[24px] h-10 w-10 p-0 transition-transform hover:scale-110"
+                  >
                     <ShoppingCart size={18} />
                   </Button>
                 </div>

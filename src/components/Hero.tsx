@@ -3,12 +3,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
-      {/* Background Image with Mask */}
       <div className="absolute inset-0 z-0">
         <img 
           src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=2000" 
@@ -37,10 +42,17 @@ const Hero = () => {
               Discover our curated selection of premium beans sourced from the world's finest coffee estates.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button className="bg-[#2C1E1A] hover:bg-[#5B3A29] text-white rounded-[24px] px-8 py-6 text-lg transition-transform hover:scale-105">
+              <Button 
+                onClick={() => scrollToSection('shop')}
+                className="bg-[#2C1E1A] hover:bg-[#5B3A29] text-white rounded-[24px] px-8 py-6 text-lg transition-transform hover:scale-105"
+              >
                 Shop Now
               </Button>
-              <Button variant="outline" className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 rounded-[24px] px-8 py-6 text-lg transition-transform hover:scale-105">
+              <Button 
+                onClick={() => scrollToSection('shop')}
+                variant="outline" 
+                className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 rounded-[24px] px-8 py-6 text-lg transition-transform hover:scale-105"
+              >
                 View Menu
               </Button>
             </div>
