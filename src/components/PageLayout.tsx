@@ -3,7 +3,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { MadeWithDyad } from './made-with-dyad';
+import { MadeWithVizoxStudio } from './made-with-dyad';
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -27,7 +27,7 @@ const PageLayout = ({ children, title, subtitle }: PageLayoutProps) => {
         </div>
       </main>
       <Footer />
-      <MadeWithDyad />
+      <MadeWithVizoxStudio />
     </div>
   );
 };
