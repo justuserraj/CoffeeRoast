@@ -10,7 +10,7 @@ const images = [
   "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=400",
   "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400",
   "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=400",
-  "https://images.unsplash.com/photo-1497933321190-957443660ee2?auto=format&fit=crop&q=80&w=400",
+  "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=400", // Updated 5th image
   "https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&q=80&w=400"
 ];
 
@@ -42,6 +42,10 @@ const SocialProof = () => {
                 alt={`Community coffee ${index + 1}`} 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
+                onError={(e) => {
+                  // Fallback in case of network issues
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=400";
+                }}
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <Instagram className="text-white" size={32} />
