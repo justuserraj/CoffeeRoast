@@ -92,7 +92,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#666]">
-          <p>© {currentYear} CoffeeRoast Inc. All rights reserved.</p>
+          <p>© {currentYear} CoffeeRoast Inc. All rights reserved. | <span className="text-white/50 hover:text-white transition-colors cursor-default">VizoxStudio</span></p>
           <div className="flex gap-8">
             <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>

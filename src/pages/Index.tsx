@@ -15,7 +15,7 @@ import BlogGrid from '@/components/BlogGrid';
 import SocialProof from '@/components/SocialProof';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
-import { MadeWithDyad } from "@/components/made-with-dyad";
+import { Watermark } from "@/components/Watermark";
 
 const Index = () => {
   return (
@@ -38,7 +38,7 @@ const Index = () => {
         <CTA />
       </main>
       <Footer />
-      <MadeWithDyad />
+      <Watermark />
     </div>
   );
 };
